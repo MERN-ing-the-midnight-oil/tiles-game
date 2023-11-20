@@ -1,0 +1,5 @@
+.cell {
+  border: 1px solid black;
+  width: 50px;  /* Fixed width for each cell */
+  height: 50px; /* Fixed height for each cell */
+}
