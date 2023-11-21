@@ -1,5 +1,13 @@
-.cell {
+
+/* ".cell input" applies to any input tags in cell className" */
+.cell input {
+  background-color: grey;
+  width: 40px; /* or any size that fits well in your grid */
+  height: 40px;
+  padding: 0;
+  margin: 0;
   border: 1px solid black;
-  width: 50px;  /* Fixed width for each cell */
-  height: 50px; /* Fixed height for each cell */
+  box-sizing: border-box; /* Include padding and border in the width and height */
+text-align: center;
+font-size: larger;
 }
