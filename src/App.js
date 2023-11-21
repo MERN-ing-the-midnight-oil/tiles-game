@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import CrosswordGrid from "./components/grid";
+import GameBoard from "./components/GameBoard";
 
-//App is the parent component of CrosswordGrid because CrosswordGrid is rendered inside. Parents can pass props, in this case, size.
+// App is the top-level component that renders the entire GameBoard
 function App() {
 	return (
 		<div className="App">
-			<CrosswordGrid size={10} />
+			<GameBoard size={10} /> {/* Rendering GameBoard */}
 		</div>
 	);
 }

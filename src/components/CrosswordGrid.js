@@ -11,13 +11,12 @@ const CrosswordGrid = ({ size }) => {
 	// Handler for input changes
 	// defintes handleInputChange as a function that takes two paramenters, index, the position of the cell being changed, and newValue, the new string entered into the cell
 	const handleCellChange = (index, newValue) => {
-		// Creates a new array with updated value, newValues, gives it the spread (copy) of the cellValues array
-		const newValues = [...cellValues];
+		const newValues = [...cellValues]; // Creates a new array to mutate called newValues, starts if off with the spread (copy) of the original cellValues array
 
-		//... and then updates the particular element at the 'index' position in the newValues array with newValue which effectively updates the value of the specified cell.
+		//... and then updates the particular element at the 'index' position in the newValues array with the specific newValue which is given e.target.value
 		newValues[index] = newValue;
 
-		//setCellValues  is the setter fucttion for the cellValues state, which is provided by the useState hook.Calling it updates the cellValues state and triggers a re-render of the component
+		//setCellValues  is then passed the entire newValues array, and useState works it's under-the-hood magic, replacing "cellValues" with "setCellValues"
 		setCellValues(newValues); // Update state
 	};
 
@@ -43,15 +42,15 @@ const CrosswordGrid = ({ size }) => {
 										<td
 											key={`${rowIndex}-${colIndex}`}
 											className="cell">
-											{" "}
 											{/* Unique key for each cell , Input element for user to enter data*/}
 											<input
 												type="text"
 												maxLength="1" // Limiting input to one character
-												value={cellValues[cellIndex]} // Binding the value to the corresponding state
+												value={cellValues[cellIndex]}
+												//the moment a user types a character, the build-in event handler is triggered
 												onChange={(e) =>
 													handleCellChange(cellIndex, e.target.value)
-												} // Updating state when input changes
+												} // passes the arguments cellIndex and target.value to handleCellChange which makes a copy of the old state and pastes the new target vales into a new cellValues array and gives it to useState to make the update
 											/>
 										</td>
 									);
