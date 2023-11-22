@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import CrosswordGrid from "./CrsosswordGrid";
+import CrosswordGrid from "./CrosswordGrid";
 import LetterHand from "./LetterHand";
 import LetterBag from "./LetterBag";
+
+const size = 10; // pass this to CrosswordGrid adjust as needed
 
 const GameBoard = () => {
 	const [letterBag, setLetterBag] = useState(/* Initial full set of letters */);
@@ -14,6 +16,7 @@ const GameBoard = () => {
 	return (
 		<div>
 			<CrosswordGrid
+				gridSize={size} //props sent down
 				gridState={gridState}
 				setGridState={setGridState}
 				letterHand={letterHand}
