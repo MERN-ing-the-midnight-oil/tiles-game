@@ -6,7 +6,7 @@ const CrosswordGrid = ({ gridSize }) => {
 	//the following "const [cellValues, setCellValues" can be thought of as const cellValues = stateArray[0]; const setCellValues = stateArray[1];
 	//useState gets the initial state, which is an array filled with empty strings
 	// setCellValues is the state setter function. all it does is update the state with whatever you give it.
-	// const [cellValues, setCellValues] = useState(Array(size * size).fill(""));
+	//const [cellValues, setCellValues] = useState(Array(size * size).fill(""));
 	const [cellValues, setCellValues] = useState(Array(100).fill(""));
 	// Handler for input changes
 	// defintes handleInputChange as a function that takes two paramenters, index, the position of the cell being changed, and newValue, the new string entered into the cell

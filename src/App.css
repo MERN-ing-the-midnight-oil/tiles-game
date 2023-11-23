@@ -1,7 +1,7 @@
 
 /* ".cell input" applies to any input tags in cell className" */
 .cell input {
-  background-color: grey;
+  background-color: yellow;
   width: 40px; /* or any size that fits well in your grid */
   height: 40px;
   padding: 0;
