@@ -12,10 +12,7 @@ const LetterHand = ({ letterHand, setLetterHand, onDrawLetter }) => {
 					<li>There are no letters in your hand</li>
 				)}
 			</ul>
-			<button onClick={onDrawLetter}>
-				Fill your hand with letters chosen randomly from tiles remaining in the
-				bag
-			</button>
+			<button onClick={onDrawLetter}>Draw from bag</button>
 		</div>
 	);
 };

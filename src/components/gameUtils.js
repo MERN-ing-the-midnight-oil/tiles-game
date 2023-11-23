@@ -46,3 +46,10 @@ export const drawRandomLetter = (letterBag) => {
 	const randomIndex = Math.floor(Math.random() * letterBag.length);
 	return letterBag[randomIndex];
 };
+//Function to create an initial grid that is "size*size" big and filled with empty strings
+// Define a standard grid size
+export const gridSize = 10;
+// Function to create an initial grid state
+export const createInitialGrid = () => {
+	return Array(gridSize * gridSize).fill("");
+};
