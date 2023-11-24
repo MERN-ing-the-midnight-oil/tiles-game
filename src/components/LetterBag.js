@@ -1,17 +1,18 @@
 import React from "react";
 
-const LetterBag = ({ letterBag, setLetterBag }) => {
-	// Use 'letterBag' to render the letters
-	// Use 'setLetterBag' if you need to modify the letter bag
+const LetterBag = ({ letterBag, selectedLetter, isTransitioning }) => {
 	return (
 		<div className="letter-bag">
-			<h3>This is the letter bag</h3>
 			{letterBag.map((letter, index) => (
 				<span
 					key={index}
-					className="tiles">
+					className={
+						selectedLetter === letter && isTransitioning
+							? "tiles fade-out"
+							: "tiles"
+					}>
 					{letter}
-				</span> // Example rendering
+				</span>
 			))}
 		</div>
 	);

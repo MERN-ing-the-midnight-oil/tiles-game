@@ -16,18 +16,33 @@ const GameBoard = () => {
 	const [letterBag, setLetterBag] = useState(createInitialLetterBag());
 	const [letterHand, setLetterHand] = useState([]); //players hand starts with zero letter tiles
 	const [gridState, setGridState] = useState(createInitialGrid);
+	const [drawnLetter, setDrawnLetter] = useState(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
-	// Functions to manage letter movement between bag, hand, and grid are imported from gameUtils
 	// Handler function to draw a letter and update states
 	const handleDrawLetter = () => {
+		//letter gets the result of performing drawRandomLetter to the current state of LetterBag which returns a single randomly selected letter
 		const letter = drawRandomLetter(letterBag);
 		if (letter) {
-			// Add the drawn letter to the hand...
-			setLetterHand([...letterHand, letter]);
-			//...and remove it from the bag
-			setLetterBag(removeOneLetter(letterBag, letter));
+			// Set the randomly drawn letter and start the transition
+			setDrawnLetter(letter);
+			setIsTransitioning(true);
+
+			// After 1 second (once the fade-out animation completes)...
+			setTimeout(() => {
+				// Add the drawn letter to the hand
+				setLetterHand((prevHand) => [...prevHand, letter]);
+
+				// Remove the drawn letter from the bag
+				setLetterBag((prevBag) => removeOneLetter(prevBag, letter));
+
+				// End the transition and reset the drawn letter state
+				setIsTransitioning(false);
+				setDrawnLetter(null);
+			}, 1000); // Duration should match the CSS fade-out animation
 		}
 	};
+
 	return (
 		<div>
 			<h1>Bananarama Grams</h1>
@@ -55,8 +70,9 @@ const GameBoard = () => {
 				}}>
 				<LetterHand
 					letterHand={letterHand}
-					setLetterHand={setLetterHand}
 					onDrawLetter={handleDrawLetter}
+					drawnLetter={drawnLetter}
+					isTransitioning={isTransitioning}
 				/>
 			</div>
 
@@ -70,6 +86,8 @@ const GameBoard = () => {
 				<LetterBag
 					letterBag={letterBag}
 					setLetterBag={setLetterBag}
+					drawnLetter={drawnLetter}
+					isTransitioning={isTransitioning}
 				/>
 			</div>
 		</div>
