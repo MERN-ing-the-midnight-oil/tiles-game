@@ -53,3 +53,12 @@ export const gridSize = 10;
 export const createInitialGrid = () => {
 	return Array(gridSize * gridSize).fill("");
 };
+
+// Function to remove the first occurrence of a specific letter from an array
+export const removeOneLetter = (bag, letterToRemove) => {
+	const index = bag.findIndex((l) => l === letterToRemove);
+	if (index > -1) {
+		return [...bag.slice(0, index), ...bag.slice(index + 1)];
+	}
+	return bag;
+};

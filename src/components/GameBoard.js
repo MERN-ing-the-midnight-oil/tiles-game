@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import CrosswordGrid from "./CrosswordGrid";
 import LetterHand from "./LetterHand";
 import LetterBag from "./LetterBag";
-import { drawRandomLetter } from "./gameUtils";
-import { createInitialLetterBag } from "./gameUtils";
-import { createInitialGrid } from "./gameUtils";
+import {
+	drawRandomLetter,
+	createInitialLetterBag,
+	createInitialGrid,
+	removeOneLetter,
+} from "./gameUtils";
 
 const size = 10; // pass this to CrosswordGrid adjust as needed
 
@@ -19,9 +22,10 @@ const GameBoard = () => {
 	const handleDrawLetter = () => {
 		const letter = drawRandomLetter(letterBag);
 		if (letter) {
-			// Add the drawn letter to the hand and remove it from the bag
+			// Add the drawn letter to the hand...
 			setLetterHand([...letterHand, letter]);
-			setLetterBag(letterBag.filter((l) => l !== letter));
+			//...and remove it from the bag
+			setLetterBag(removeOneLetter(letterBag, letter));
 		}
 	};
 	return (
