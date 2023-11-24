@@ -7,7 +7,11 @@ const LetterBag = ({ letterBag, setLetterBag }) => {
 		<div className="letter-bag">
 			<h3>This is the letter bag</h3>
 			{letterBag.map((letter, index) => (
-				<span key={index}>{letter}</span> // Example rendering
+				<span
+					key={index}
+					className="tiles">
+					{letter}
+				</span> // Example rendering
 			))}
 		</div>
 	);

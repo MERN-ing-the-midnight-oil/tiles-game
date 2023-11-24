@@ -31,20 +31,47 @@ const GameBoard = () => {
 	return (
 		<div>
 			<h1>Bananarama Grams</h1>
-			<CrosswordGrid
-				gridSize={10}
-				cellValues={gridState}
-				setCellValues={setGridState}
-			/>
-			<LetterHand
-				letterHand={letterHand}
-				setLetterHand={setLetterHand}
-				onDrawLetter={handleDrawLetter}
-			/>
-			<LetterBag
-				letterBag={letterBag}
-				setLetterBag={setLetterBag}
-			/>
+
+			<div
+				style={{
+					border: "1px solid #ccc",
+					boxShadow: "0px 0px 10px #eee",
+					margin: "10px",
+					padding: "10px",
+				}}>
+				<CrosswordGrid
+					gridSize={10}
+					cellValues={gridState}
+					setCellValues={setGridState}
+				/>
+			</div>
+
+			<div
+				style={{
+					border: "1px solid #ccc",
+					boxShadow: "0px 0px 10px #eee",
+					margin: "10px",
+					padding: "10px",
+				}}>
+				<LetterHand
+					letterHand={letterHand}
+					setLetterHand={setLetterHand}
+					onDrawLetter={handleDrawLetter}
+				/>
+			</div>
+
+			<div
+				style={{
+					border: "1px solid #ccc",
+					boxShadow: "0px 0px 10px #eee",
+					margin: "10px",
+					padding: "10px",
+				}}>
+				<LetterBag
+					letterBag={letterBag}
+					setLetterBag={setLetterBag}
+				/>
+			</div>
 		</div>
 	);
 };

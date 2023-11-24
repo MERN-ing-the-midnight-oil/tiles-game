@@ -11,3 +11,24 @@
 text-align: center;
 font-size: larger;
 }
+
+.tiles {
+  display: inline-flex; /* Flex for centering content within each tile */
+  justify-content: center; /* Center the letter horizontally */
+  align-items: center; /* Center the letter vertically */
+  width: 40px; /* Width of each tile */
+  height: 40px; /* Height of each tile */
+  background-color: #f0f0f0; /* Light background for the tile */
+  border: 1px solid #ccc; /* Border to distinguish each tile */
+  border-radius: 5px; /* Rounded corners for the tiles */
+  font-size: 20px; /* Larger font size for the letter */
+  font-weight: bold; /* Make the letter bold */
+  margin: 5px; /* Margin around each tile */
+}
+
+.letter-bag, .letter-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
