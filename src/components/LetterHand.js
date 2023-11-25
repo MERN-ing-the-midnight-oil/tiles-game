@@ -10,8 +10,7 @@ const LetterHand = ({
 		<div className="letter-hand">
 			<h3>
 				This is your letter hand. Play letters from your hand by typing into the
-				yellow grid. Letters will be automatically replenished from the letter
-				bag when you click on "Draw Tiles".
+				yellow grid. Click on "Draw Tiles" to draw a tile from the bag, below.
 			</h3>
 			<ul>
 				{letterHand.map((letter, index) => (

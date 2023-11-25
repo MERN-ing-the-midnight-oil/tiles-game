@@ -39,7 +39,7 @@ const GameBoard = () => {
 				// End the transition and reset the drawn letter state
 				setIsTransitioning(false);
 				setDrawnLetter(null);
-			}, 1000); // Duration should match the CSS fade-out animation
+			}, 2000); // Duration should match the CSS fade-out animation
 		}
 	};
 

@@ -45,11 +45,11 @@ font-size: larger;
 }
 
 .fade-out {
-  animation: fadeOut 1s forwards;
-  color: red !important
+  animation: fadeOut 2s forwards;
+  background-color: red !important
 }
 
 .fade-in {
-  animation: fadeIn 1s forwards;
-  color: red !important
+  animation: fadeIn 2s forwards;
+  background-color: red !important
 }
