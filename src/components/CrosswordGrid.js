@@ -2,7 +2,7 @@
 ///useState, and useRef
 import React, { useState, useRef, useEffect } from "react";
 
-const CrosswordGrid = ({ gridSize, cellValues, setCellValues }) => {
+const CrosswordGrid = ({ gridSize, cellValues, setCellValues, letterHand }) => {
 	//what cell in the grid is selected
 	const [selectedCell, setSelectedCell] = useState({ row: null, col: null });
 	//which way the crossword is going, across or down
@@ -30,15 +30,21 @@ const CrosswordGrid = ({ gridSize, cellValues, setCellValues }) => {
 		}
 	}, [selectedCell, gridSize]); // Depend on selectedCell and gridSize
 
-	// Handles updating a cell with a letter typed by the user, and calculates the next cell to receive focus and sets focus on that cell
+	// Handles updating a cell with a letter typed by the user, and calculates the next cellindex to receive focus and sets focus on that cell
 	const handleCellChange = (cellIndex, newValue) => {
+		//prevent the user from typing a letter not in the letter hand
+		if (!letterHand.includes(newValue.toUpperCase())) {
+			alert("You may only use letters present in your letter hand");
+			return;
+		}
+
 		// Update the cell value
 		const newValues = [...cellValues];
-		newValues[cellIndex] = newValue;
+		newValues[cellIndex] = newValue.toUpperCase();
 		setCellValues(newValues);
 
 		// Calculate the index of the next cell based on inputDirection
-		let nextRow = Math.floor(cellIndex / gridSize); //todo does this make sense?
+		let nextRow = Math.floor(cellIndex / gridSize);
 		let nextCol = cellIndex % gridSize;
 
 		if (inputDirection === "right") {
@@ -73,47 +79,54 @@ const CrosswordGrid = ({ gridSize, cellValues, setCellValues }) => {
 	};
 
 	return (
-		<table>
-			<tbody>
-				{Array.from({ length: gridSize }).map((_, rowIndex) => (
-					<tr key={rowIndex}>
-						{Array.from({ length: gridSize }).map((_, colIndex) => {
-							const cellIndex = rowIndex * gridSize + colIndex;
-							const isCellSelected =
-								rowIndex === selectedCell.row && colIndex === selectedCell.col;
+		<>
+			<h2>
+				Click on a grid square to type a word using letters from your letter
+				hand. Double-click to type your word down instead of across.
+			</h2>
+			<table>
+				<tbody>
+					{Array.from({ length: gridSize }).map((_, rowIndex) => (
+						<tr key={rowIndex}>
+							{Array.from({ length: gridSize }).map((_, colIndex) => {
+								const cellIndex = rowIndex * gridSize + colIndex;
+								const isCellSelected =
+									rowIndex === selectedCell.row &&
+									colIndex === selectedCell.col;
 
-							const directionIndicator = isCellSelected
-								? inputDirection === "right"
-									? ">"
-									: "V"
-								: "";
+								const directionIndicator = isCellSelected
+									? inputDirection === "right"
+										? ">"
+										: "V"
+									: "";
 
-							return (
-								<td
-									key={`${rowIndex}-${colIndex}`}
-									className="cell"
-									onClick={() => handleCellClick(rowIndex, colIndex)}>
-									{isCellSelected && (
-										<span className="direction-indicator">
-											{directionIndicator}
-										</span>
-									)}
-									<input
-										ref={cellRefs.current[cellIndex]}
-										type="text"
-										maxLength="1"
-										value={cellValues[cellIndex]}
-										onChange={(e) =>
-											handleCellChange(cellIndex, e.target.value)
-										}
-									/>
-								</td>
-							);
-						})}
-					</tr>
-				))}
-			</tbody>
-		</table>
+								return (
+									<td
+										key={`${rowIndex}-${colIndex}`}
+										className="cell"
+										onClick={() => handleCellClick(rowIndex, colIndex)}>
+										{isCellSelected && (
+											<span className="direction-indicator">
+												{directionIndicator}
+											</span>
+										)}
+										<input
+											ref={cellRefs.current[cellIndex]}
+											type="text"
+											maxLength="1"
+											value={cellValues[cellIndex]}
+											onChange={(e) =>
+												handleCellChange(cellIndex, e.target.value)
+											}
+										/>
+									</td>
+								);
+							})}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</>
 	);
 };
 

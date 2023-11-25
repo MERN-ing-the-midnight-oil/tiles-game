@@ -43,7 +43,12 @@ const GameBoard = () => {
 
 	return (
 		<div>
-			<h1>Bananarama Grams</h1>
+			<h1>Bananarama Grams </h1>
+			<h2>by Rhys Smoker</h2>
+			<h3>
+				A React app that demonstrates props, lifting state, useState, useRef,
+				and useEffect.{" "}
+			</h3>
 
 			<div
 				style={{
@@ -56,6 +61,7 @@ const GameBoard = () => {
 					gridSize={10}
 					cellValues={gridState}
 					setCellValues={setGridState}
+					letterHand={letterHand}
 				/>
 			</div>
 
