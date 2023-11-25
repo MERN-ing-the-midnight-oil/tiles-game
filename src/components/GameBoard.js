@@ -9,8 +9,6 @@ import {
 	removeOneLetter,
 } from "./gameUtils";
 
-const size = 10; // pass this to CrosswordGrid adjust as needed
-
 const GameBoard = () => {
 	//using the useState hook to manage children's state
 	const [letterBag, setLetterBag] = useState(createInitialLetterBag());
