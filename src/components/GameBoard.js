@@ -16,6 +16,7 @@ const GameBoard = () => {
 	const [gridState, setGridState] = useState(createInitialGrid);
 	const [drawnLetter, setDrawnLetter] = useState(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [playedLetter, setPlayedLetter] = useState(null);
 
 	// Handler function to draw a letter and update states
 	const handleDrawLetter = () => {
@@ -31,7 +32,7 @@ const GameBoard = () => {
 				// Add the drawn letter to the hand
 				setLetterHand((prevHand) => [...prevHand, letter]);
 
-				// Remove the drawn letter from the bag
+				// Remove the drawn letter from the bag.
 				setLetterBag((prevBag) => removeOneLetter(prevBag, letter));
 
 				// End the transition and reset the drawn letter state
@@ -40,6 +41,18 @@ const GameBoard = () => {
 			}, 2000); // Duration should match the CSS fade-out animation
 		}
 	};
+	//Handler function that updates states when a letter is played on the grid.
+	//playedLetter should be given to handlePlayLetter whenever a user successfully types a new letter in the grid.
+	const handlePlayLetter = (playedLetter) => {
+		//Set the letter played in the grid that must be removed from the hand
+		setPlayedLetter(playedLetter);
+		setIsTransitioning(true);
+		setTimeout(() => {
+			setLetterHand((prevHand) => removeOneLetter(prevHand, playedLetter)); //TODO: verify removeOneLetter util will work here the same way it does removing a drawn letter from the bag in handleDrawLetter-
+			setIsTransitioning(false);
+			setPlayedLetter(null);
+		}, 2000);
+	};
 
 	return (
 		<div>
@@ -47,7 +60,10 @@ const GameBoard = () => {
 			<h2>by Rhys Smoker</h2>
 			<h3>
 				A React app that demonstrates props, lifting state, useState, useRef,
-				and useEffect.{" "}
+				and useEffect.
+				<a href="https://github.com/MERN-ing-the-midnight-oil/tiles-game">
+					Github Repository
+				</a>
 			</h3>
 
 			<div
@@ -62,6 +78,8 @@ const GameBoard = () => {
 					cellValues={gridState}
 					setCellValues={setGridState}
 					letterHand={letterHand}
+					setPlayedLetter={setPlayedLetter} //to use when the user enters a letter into the grid
+					onPlayLetter={handlePlayLetter}
 				/>
 			</div>
 
@@ -77,6 +95,7 @@ const GameBoard = () => {
 					onDrawLetter={handleDrawLetter}
 					drawnLetter={drawnLetter}
 					isTransitioning={isTransitioning}
+					playedLetter={playedLetter} //LetterHand needs this to know which letter to delete
 				/>
 			</div>
 

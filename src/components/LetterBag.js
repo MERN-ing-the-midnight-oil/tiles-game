@@ -11,6 +11,7 @@ const LetterBag = ({ letterBag, drawnLetter, isTransitioning }) => {
 				// Check if this letter matches the drawnLetter and transitioning, and fade-out not yet applied
 				if (letter === drawnLetter && isTransitioning && !fadeApplied) {
 					fadeApplied = true; // Set flag to true to prevent applying fade-out again
+					// Render the letter normally if it's not the drawn letter or if fade-out has already been applied
 					return (
 						<span
 							key={index}

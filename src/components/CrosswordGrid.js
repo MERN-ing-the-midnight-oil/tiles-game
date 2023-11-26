@@ -2,7 +2,13 @@
 ///useState, and useRef
 import React, { useState, useRef, useEffect } from "react";
 
-const CrosswordGrid = ({ gridSize, cellValues, setCellValues, letterHand }) => {
+const CrosswordGrid = ({
+	gridSize,
+	cellValues,
+	setCellValues,
+	letterHand,
+	onPlayLetter,
+}) => {
 	//what cell in the grid is selected
 	const [selectedCell, setSelectedCell] = useState({ row: null, col: null });
 	//which way the crossword is going, across or down
@@ -64,6 +70,11 @@ const CrosswordGrid = ({ gridSize, cellValues, setCellValues, letterHand }) => {
 		const nextCellIndex = nextRow * gridSize + nextCol;
 		// Update selectedCell to the next cell
 		setSelectedCell({ row: nextRow, col: nextCol });
+
+		//deleting /fading out the newValue using onPlayLetter aka handlePlayLetter
+		if (letterHand.includes(newValue.toUpperCase())) {
+			onPlayLetter(newValue.toUpperCase());
+		}
 	};
 
 	const handleCellClick = (rowIndex, colIndex) => {

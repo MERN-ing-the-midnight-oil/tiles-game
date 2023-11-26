@@ -5,24 +5,29 @@ const LetterHand = ({
 	onDrawLetter,
 	drawnLetter,
 	isTransitioning,
+	playedLetter,
 }) => {
 	return (
 		<div className="letter-hand">
 			<h3>
 				This is your letter hand. Play letters from your hand by typing into the
-				yellow grid. Click on "Draw Tiles" to draw a tile from the bag, below.
+				yellow grid. Click on "Draw Tiles" to draw a tile from the "bag", below.
 			</h3>
 			<ul>
 				{letterHand.map((letter, index) => (
 					<li
 						key={index}
-						className="tiles">
+						className={`tiles ${
+							letter === playedLetter && isTransitioning ? "fade-out" : ""
+						}`}>
 						{letter}
 					</li>
 				))}
+				{/* Fade-in effect for the newly drawn letter during transition */}
 				{isTransitioning && drawnLetter && (
 					<li className="tiles fade-in">{drawnLetter}</li>
 				)}
+				{/* Display message when there are no letters in the hand */}
 				{letterHand.length === 0 && !isTransitioning && (
 					<li>There are no letters in your hand</li>
 				)}
