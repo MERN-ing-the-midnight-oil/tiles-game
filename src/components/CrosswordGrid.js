@@ -67,7 +67,7 @@ const CrosswordGrid = ({
 			}
 		}
 
-		const nextCellIndex = nextRow * gridSize + nextCol;
+		// const nextCellIndex = nextRow * gridSize + nextCol;
 		// Update selectedCell to the next cell
 		setSelectedCell({ row: nextRow, col: nextCol });
 
@@ -91,10 +91,11 @@ const CrosswordGrid = ({
 
 	return (
 		<>
-			<h2>
-				Click on a grid square to type a word using letters from your letter
-				hand. Double-click to type your word down instead of across.
-			</h2>
+			<h2>This is the yellow grid. </h2>{" "}
+			<h3>
+				Click anywhere and type a word using letters from your letter hand.
+				Click twice to write downward instead of across the grid.
+			</h3>
 			<table>
 				<tbody>
 					{Array.from({ length: gridSize }).map((_, rowIndex) => (

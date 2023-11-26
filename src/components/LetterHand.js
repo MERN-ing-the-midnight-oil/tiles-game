@@ -9,9 +9,10 @@ const LetterHand = ({
 }) => {
 	return (
 		<div className="letter-hand">
+			<h2>This is your letter hand.</h2>
 			<h3>
-				This is your letter hand. Play letters from your hand by typing into the
-				yellow grid. Click on "Draw Tiles" to draw a tile from the "bag", below.
+				These letters may be typed into the yellow grid. Click on "Draw Tiles"
+				to randomly collect a new letter from the letter bag.
 			</h3>
 			<ul>
 				{letterHand.map((letter, index) => (
@@ -29,7 +30,7 @@ const LetterHand = ({
 				)}
 				{/* Display message when there are no letters in the hand */}
 				{letterHand.length === 0 && !isTransitioning && (
-					<li>There are no letters in your hand</li>
+					<li style={{ color: "red" }}>There are no letters in your hand</li>
 				)}
 			</ul>
 			<button
@@ -45,7 +46,7 @@ const LetterHand = ({
 					boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Subtle shadow
 					transition: "0.3s", // Smooth transition for hover effects
 				}}>
-				Draw Tiles
+				Draw A Tile
 			</button>
 		</div>
 	);

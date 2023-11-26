@@ -3,9 +3,9 @@ const LetterBag = ({ letterBag, drawnLetter, isTransitioning }) => {
 
 	return (
 		<div className="letter-bag">
+			<h2>This is the letter bag.</h2>{" "}
 			<h3>
-				This is the letter bag, the collection of all letters remaining that you
-				may randomly draw when you click on "Draw Tiles"{" "}
+				These are all the letters that you might get when you "Draw A Tile"{" "}
 			</h3>
 			{letterBag.map((letter, index) => {
 				// Check if this letter matches the drawnLetter and transitioning, and fade-out not yet applied

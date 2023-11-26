@@ -48,7 +48,7 @@ const GameBoard = () => {
 		setPlayedLetter(playedLetter);
 		setIsTransitioning(true);
 		setTimeout(() => {
-			setLetterHand((prevHand) => removeOneLetter(prevHand, playedLetter)); //TODO: verify removeOneLetter util will work here the same way it does removing a drawn letter from the bag in handleDrawLetter-
+			setLetterHand((prevHand) => removeOneLetter(prevHand, playedLetter));
 			setIsTransitioning(false);
 			setPlayedLetter(null);
 		}, 2000);
@@ -61,13 +61,29 @@ const GameBoard = () => {
 				{/* Centering container */}
 				<h1>Bananarama Grams</h1>
 				<h2>by Rhys Smoker</h2>
-				<h3>
+				<h3 style={{ marginBottom: "20px" }}>
 					A React app that demonstrates props, lifting state, useState, useRef,
 					and useEffect.
-					<br /> {/* Line break for better spacing */}
-					<a href="https://github.com/MERN-ing-the-midnight-oil/tiles-game">
-						Github Repository
-					</a>
+				</h3>
+				<h3>
+					<div style={{ display: "flex", justifyContent: "space-around" }}>
+						<div>
+							<a
+								href="https://github.com/MERN-ing-the-midnight-oil/tiles-game/blob/main/README.md"
+								target="_blank"
+								rel="noopener noreferrer">
+								Explanation of components.
+							</a>
+						</div>
+						<div>
+							<a
+								href="https://github.com/MERN-ing-the-midnight-oil/tiles-game"
+								target="_blank"
+								rel="noopener noreferrer">
+								Project Github Repository
+							</a>
+						</div>
+					</div>
 				</h3>
 			</div>
 			<div
@@ -98,16 +114,14 @@ const GameBoard = () => {
 						margin: "10px",
 						padding: "10px",
 					}}>
-					<CrosswordGrid
-						gridSize={10}
-						cellValues={gridState}
-						setCellValues={setGridState}
+					<LetterHand
 						letterHand={letterHand}
-						setPlayedLetter={setPlayedLetter}
-						onPlayLetter={handlePlayLetter}
+						onDrawLetter={handleDrawLetter}
+						drawnLetter={drawnLetter}
+						isTransitioning={isTransitioning}
+						playedLetter={playedLetter}
 					/>
 				</div>
-
 				<div
 					style={{
 						border: "1px solid #ccc",
@@ -115,12 +129,13 @@ const GameBoard = () => {
 						margin: "10px",
 						padding: "10px",
 					}}>
-					<LetterHand
+					<CrosswordGrid
+						gridSize={10}
+						cellValues={gridState}
+						setCellValues={setGridState}
 						letterHand={letterHand}
-						onDrawLetter={handleDrawLetter}
-						drawnLetter={drawnLetter}
-						isTransitioning={isTransitioning}
-						playedLetter={playedLetter}
+						setPlayedLetter={setPlayedLetter}
+						onPlayLetter={handlePlayLetter}
 					/>
 				</div>
 			</div>

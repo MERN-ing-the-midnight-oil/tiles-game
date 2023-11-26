@@ -1,4 +1,4 @@
-// Function to create the initial letter bag
+// Function to create an initial letter bag
 const letterDistribution = {
 	A: 9,
 	B: 2,
@@ -55,7 +55,7 @@ export const createInitialGrid = () => {
 	return Array(gridSize * gridSize).fill("");
 };
 
-// Function to remove the first occurrence of a specific letter from an array, this actually gets used in multiple places, so it's a legit util.
+// Function to remove the first occurrence of a specific letter from an array, used by handleDrawLetter and handlePlayLetter
 export const removeOneLetter = (bag, letterToRemove) => {
 	const index = bag.findIndex((l) => l === letterToRemove);
 	if (index > -1) {
