@@ -56,49 +56,20 @@ const GameBoard = () => {
 
 	return (
 		<div>
-			<h1>Bananarama Grams </h1>
-			<h2>by Rhys Smoker</h2>
-			<h3>
-				A React app that demonstrates props, lifting state, useState, useRef,
-				and useEffect.
-				<a href="https://github.com/MERN-ing-the-midnight-oil/tiles-game">
-					Github Repository
-				</a>
-			</h3>
-
-			<div
-				style={{
-					border: "1px solid #ccc",
-					boxShadow: "0px 0px 10px #eee",
-					margin: "10px",
-					padding: "10px",
-				}}>
-				<CrosswordGrid
-					gridSize={10}
-					cellValues={gridState}
-					setCellValues={setGridState}
-					letterHand={letterHand}
-					setPlayedLetter={setPlayedLetter} //to use when the user enters a letter into the grid
-					onPlayLetter={handlePlayLetter}
-				/>
+			<div style={{ textAlign: "center" }}>
+				{" "}
+				{/* Centering container */}
+				<h1>Bananarama Grams</h1>
+				<h2>by Rhys Smoker</h2>
+				<h3>
+					A React app that demonstrates props, lifting state, useState, useRef,
+					and useEffect.
+					<br /> {/* Line break for better spacing */}
+					<a href="https://github.com/MERN-ing-the-midnight-oil/tiles-game">
+						Github Repository
+					</a>
+				</h3>
 			</div>
-
-			<div
-				style={{
-					border: "1px solid #ccc",
-					boxShadow: "0px 0px 10px #eee",
-					margin: "10px",
-					padding: "10px",
-				}}>
-				<LetterHand
-					letterHand={letterHand}
-					onDrawLetter={handleDrawLetter}
-					drawnLetter={drawnLetter}
-					isTransitioning={isTransitioning}
-					playedLetter={playedLetter} //LetterHand needs this to know which letter to delete
-				/>
-			</div>
-
 			<div
 				style={{
 					border: "1px solid #ccc",
@@ -112,6 +83,46 @@ const GameBoard = () => {
 					drawnLetter={drawnLetter}
 					isTransitioning={isTransitioning}
 				/>
+			</div>
+			<div
+				style={{
+					display: "flex", // Using Flexbox
+					justifyContent: "center", // Centering the items horizontally
+					alignItems: "flex-start", // Aligning items to the start of the flex container
+					margin: "10px",
+				}}>
+				<div
+					style={{
+						border: "1px solid #ccc",
+						boxShadow: "0px 0px 10px #eee",
+						margin: "10px",
+						padding: "10px",
+					}}>
+					<CrosswordGrid
+						gridSize={10}
+						cellValues={gridState}
+						setCellValues={setGridState}
+						letterHand={letterHand}
+						setPlayedLetter={setPlayedLetter}
+						onPlayLetter={handlePlayLetter}
+					/>
+				</div>
+
+				<div
+					style={{
+						border: "1px solid #ccc",
+						boxShadow: "0px 0px 10px #eee",
+						margin: "10px",
+						padding: "10px",
+					}}>
+					<LetterHand
+						letterHand={letterHand}
+						onDrawLetter={handleDrawLetter}
+						drawnLetter={drawnLetter}
+						isTransitioning={isTransitioning}
+						playedLetter={playedLetter}
+					/>
+				</div>
 			</div>
 		</div>
 	);
